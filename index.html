@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthFirst Pharmacy - Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+        }
+
+        .logo p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .login-section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .nav-tab {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .system-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            min-height: 600px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .panel-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #6c757d, #5a6268);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .data-table th {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            font-weight: 600;
+        }
+
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">H+</div>
+                <div>
+                    <h1>HealthFirst Pharmacy</h1>
+                    <p>Comprehensive Healthcare Management System</p>
+                </div>
+            </div>
+            
+            <div class="login-section">
+                <div id="loginForm">
+                    <h3>System Access</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>User Role:</label>
+                            <select id="userRole">
+                                <option value="">Select Role</option>
+                                <option value="pharmacist">Pharmacist</option>
+                                <option value="it_operator">IT Operator</option>
+                                <option value="representative">Representative</option>
+                                <option value="healthcare_provider">Healthcare Provider</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Username:</label>
+                            <input type="text" id="username" placeholder="Enter username">
+                        </div>
+                        <div class="form-group">
+                            <label>Password:</label>
+                            <input type="password" id="password" placeholder="Enter password">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn" onclick="login()">Login</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="userInfo" class="user-info hidden">
+                    <div>
+                        <strong>Logged in as:</strong> <span id="currentUser"></span> 
+                        (<span id="currentRole"></span>)
+                    </div>
+                    <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-tabs" id="navigationTabs">
+            <button class="nav-tab active" onclick="showPanel('dashboard')">Dashboard</button>
+            <button class="nav-tab" onclick="showPanel('emr')" id="emrTab">EMR System</button>
+            <button class="nav-tab" onclick="showPanel('prescriptions')" id="prescTab">Prescription Database</button>
+            <button class="nav-tab" onclick="showPanel('inventory')" id="inventoryTab">Inventory Management</button>
+        </div>
+
+        <!-- Dashboard Panel -->
+        <div id="dashboardPanel" class="system-panel">
+            <div class="panel-header">
+                <h2 class="panel-title">System Dashboard</h2>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalPatients">0</div>
+                    <div class="stat-label">Total Patients</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activePrescriptions">0</div>
+                    <div class="stat-label">Active Prescriptions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="inventoryItems">0</div>
+                    <div class="stat-label">Inventory Items</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="lowStockItems">0</div>
+                    <div class="stat-label">Low Stock Alerts</div>
+                </div>
+            </div>
+
+            <div id="systemAlerts"></div>
+            
+            <div id="dashboardContent">
+                <h3>Recent Activity</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>System</th>
+                            <th>Action</th>
+                            <th>User</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activityLog">
+                        <!-- Activity logs will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- EMR System Panel -->
+        <div id="emrPanel" class="system-panel hidden">
+            <div class="panel-header">
+                <h2 class="panel-title">Electronic Medical Records System</h2>
+                <button class="btn" onclick="showModal('addPatientModal')">Add New Patient</button>
+            </div>
+            
+            <input type="text" class="search-bar" id="patientSearch" placeholder="Search patients by name or ID..." onkeyup="searchPatients()">
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Patient ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Contact</th>
+                        <th>Last Visit</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="patientsTable">
+                    <!-- Patient data will be populated here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Prescription Database Panel -->
+        <div id="prescriptionsPanel" class="system-panel hidden">
+            <div class="panel-header">
+                <h2 class="panel-title">Patient Prescription Database</h2>
+                <button class="btn" onclick="showModal('addPrescriptionModal')">Add New Prescription</button>
+            </div>
+            
+            <input type="text" class="search-bar" id="prescriptionSearch" placeholder="Search prescriptions by patient name or medication..." onkeyup="searchPrescriptions()">
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Prescription ID</th>
+                        <th>Patient Name</th>
+                        <th>Medication</th>
+                        <th>Dosage</th>
+                        <th>Prescribed Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="prescriptionsTable">
+                    <!-- Prescription data will be populated here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Inventory Management Panel -->
+        <div id="inventoryPanel" class="system-panel hidden">
+            <div class="panel-header">
+                <h2 class="panel-title">Inventory Management System</h2>
+                <button class="btn" onclick="showModal('addInventoryModal')">Add Inventory Item</button>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-secondary" onclick="generateFinancialReport()">Generate Financial Report</button>
+                <button class="btn btn-secondary" onclick="checkLowStock()">Check Low Stock</button>
+            </div>
+            
+            <input type="text" class="search-bar" id="inventorySearch" placeholder="Search inventory by item name or supplier..." onkeyup="searchInventory()">
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Item Name</th>
+                        <th>Supplier</th>
+                        <th>Stock Level</th>
+                        <th>Unit Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryTable">
+                    <!-- Inventory data will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Add Patient Modal -->
+    <div id="addPatientModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addPatientModal')">&times;</span>
+            <h2>Add New Patient</h2>
+            <form onsubmit="addPatient(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Patient Name:</label>
+                        <input type="text" id="patientName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Age:</label>
+                        <input type="number" id="patientAge" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Number:</label>
+                        <input type="tel" id="patientContact" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" id="patientEmail">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Medical History:</label>
+                    <textarea id="medicalHistory" rows="4" placeholder="Enter medical history..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Allergies:</label>
+                    <textarea id="allergies" rows="3" placeholder="Enter known allergies..."></textarea>
+                </div>
+                <button type="submit" class="btn">Add Patient</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Prescription Modal -->
+    <div id="addPrescriptionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addPrescriptionModal')">&times;</span>
+            <h2>Add New Prescription</h2>
+            <form onsubmit="addPrescription(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Patient:</label>
+                        <select id="prescriptionPatient" required>
+                            <option value="">Select Patient</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Medication:</label>
+                        <input type="text" id="medication" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Dosage:</label>
+                        <input type="text" id="dosage" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Frequency:</label>
+                        <select id="frequency" required>
+                            <option value="">Select Frequency</option>
+                            <option value="Once daily">Once daily</option>
+                            <option value="Twice daily">Twice daily</option>
+                            <option value="Three times daily">Three times daily</option>
+                            <option value="As needed">As needed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Duration (days):</label>
+                    <input type="number" id="duration" required>
+                </div>
+                <div class="form-group">
+                    <label>Special Instructions:</label>
+                    <textarea id="instructions" rows="3" placeholder="Enter special instructions..."></textarea>
+                </div>
+                <button type="submit" class="btn">Add Prescription</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Inventory Modal -->
+    <div id="addInventoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addInventoryModal')">&times;</span>
+            <h2>Add Inventory Item</h2>
+            <form onsubmit="addInventoryItem(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Item Name:</label>
+                        <input type="text" id="itemName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Supplier:</label>
+                        <input type="text" id="supplier" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Stock Quantity:</label>
+                        <input type="number" id="stockQuantity" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Unit Price ($):</label>
+                        <input type="number" id="unitPrice" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Minimum Stock Level:</label>
+                        <input type="number" id="minStockLevel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Expiry Date:</label>
+                        <input type="date" id="expiryDate" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Add Item</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Global Variables
+        let currentUser = null;
+        let currentRole = null;
+        let patients = [];
+        let prescriptions = [];
+        let inventory = [];
+        let activityLog = [];
+
+        // Sample Data
+        function initializeSampleData() {
+            patients = [
+                {
+                    id: 'P001',
+                    name: 'John Doe',
+                    age: 45,
+                    contact: '+94771234567',
+                    email: 'john.doe@email.com',
+                    medicalHistory: 'Hypertension, Diabetes Type 2',
+                    allergies: 'Penicillin',
+                    lastVisit: '2024-08-10',
+                    status: 'Active'
+                },
+                {
+                    id: 'P002',
+                    name: 'Jane Smith',
+                    age: 32,
+                    contact: '+94772345678',
+                    email: 'jane.smith@email.com',
+                    medicalHistory: 'Asthma',
+                    allergies: 'None',
+                    lastVisit: '2024-08-08',
+                    status: 'Active'
+                }
+            ];
+
+            prescriptions = [
+                {
+                    id: 'RX001',
+                    patientId: 'P001',
+                    patientName: 'John Doe',
+                    medication: 'Metformin 500mg',
+                    dosage: '500mg',
+                    frequency: 'Twice daily',
+                    duration: 30,
+                    prescribedDate: '2024-08-10',
+                    instructions: 'Take with meals',
+                    status: 'Active'
+                },
+                {
+                    id: 'RX002',
+                    patientId: 'P002',
+                    patientName: 'Jane Smith',
+                    medication: 'Albuterol Inhaler',
+                    dosage: '2 puffs',
+                    frequency: 'As needed',
+                    duration: 90,
+                    prescribedDate: '2024-08-08',
+                    instructions: 'Use during asthma attacks',
+                    status: 'Active'
+                }
+            ];
+
+            inventory = [
+                {
+                    id: 'INV001',
+                    name: 'Metformin 500mg',
+                    supplier: 'PharmaCorp Ltd',
+                    stockLevel: 150,
+                    unitPrice: 0.50,
+                    minStockLevel: 50,
+                    expiryDate: '2025-12-31',
+                    status: 'In Stock'
+                },
+                {
+                    id: 'INV002',
+                    name: 'Albuterol Inhaler',
+                    supplier: 'MediSupply Inc',
+                    stockLevel: 25,
+                    unitPrice: 15.00,
+                    minStockLevel: 30,
+                    expiryDate: '2025-06-30',
+                    status: 'Low Stock'
+                },
+                {
+                    id: 'INV003',
+                    name: 'Paracetamol 500mg',
+                    supplier: 'HealthMeds Co',
+                    stockLevel: 300,
+                    unitPrice: 0.25,
+                    minStockLevel: 100,
+                    expiryDate: '2026-03-15',
+                    status: 'In Stock'
+                }
+            ];
+
+            updateDashboardStats();
+            populatePatientDropdown();
+        }
+
+        // Authentication System
+        function login() {
+            const role = document.getElementById('userRole').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (!role || !username || !password) {
+                showAlert('Please fill in all fields', 'danger');
+                return;
+            }
+
+            // Simple authentication simulation
+            if (password === 'demo123') {
+                currentUser = username;
+                currentRole = role;
+                
+                document.getElementById('loginForm').classList.add('hidden');
+                document.getElementById('userInfo').classList.remove('hidden');
+                document.getElementById('currentUser').textContent = username;
+                document.getElementById('currentRole').textContent = role.replace('_', ' ').toUpperCase();
+                
+                updateNavigationAccess();
+                logActivity('Authentication', 'User logged in', username, 'Success');
+                showAlert('Login successful!', 'success');
+            } else {
+                showAlert('Invalid credentials. Use password: demo123', 'danger');
+            }
+        }
+
+        function logout() {
+            logActivity('Authentication', 'User logged out', currentUser, 'Success');
+            currentUser = null;
+            currentRole = null;
+            
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('userInfo').classList.add('hidden');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            
+            updateNavigationAccess();
+            showPanel('dashboard');
+            showAlert('Logged out successfully', 'success');
+        }
+
+        function updateNavigationAccess() {
+            const emrTab = document.getElementById('emrTab');
+            const prescTab = document.getElementById('prescTab');
+            const inventoryTab = document.getElementById('inventoryTab');
+
+            if (!currentRole) {
+                emrTab.style.display = 'none';
+                prescTab.style.display = 'none';
+                inventoryTab.style.display = 'none';
+                return;
+            }
+
+            // Role-based access control
+            switch(currentRole) {
+                case 'pharmacist':
+                    emrTab.style.display = 'block';
+                    prescTab.style.display = 'block';
+                    inventoryTab.style.display = 'none';
+                    break;
+                case 'it_operator':
+                    emrTab.style.display = 'none';
+                    prescTab.style.display = 'none';
+                    inventoryTab.style.display = 'block';
+                    break;
+                case 'representative':
+                    emrTab.style.display = 'none';
+                    prescTab.style.display = 'none';
+                    inventoryTab.style.display = 'block';
+                    break;
+                case 'healthcare_provider':
+                    emrTab.style.display = 'block';
+                    prescTab.style.display = 'block';
+                    inventoryTab.style.display = 'none';
+                    break;
+            }
+        }
+
+        // Panel Management
+        function showPanel(panelName) {
+            if (!currentUser && panelName !== 'dashboard') {
+                showAlert('Please login to access this system', 'warning');
+                return;
+            }
+
+            // Hide all panels
+            document.querySelectorAll('.system-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected panel and activate tab
+            document.getElementById(panelName + 'Panel').classList.remove('hidden');
+            event.target.classList.add('active');
+
+            // Load data for the selected panel
+            switch(panelName) {
+                case 'dashboard':
+                    updateDashboard();
+                    break;
+                case 'emr':
+                    loadPatients();
+                    break;
+                case 'prescriptions':
+                    loadPrescriptions();
+                    break;
+                case 'inventory':
+                    loadInventory();
+                    break;
+            }
+        }
+
+        // Dashboard Functions
+        function updateDashboard() {
+            updateDashboardStats();
+            loadActivityLog();
+            checkSystemAlerts();
+        }
+
+        function updateDashboardStats() {
+            document.getElementById('totalPatients').textContent = patients.length;
+            document.getElementById('activePrescriptions').textContent = prescriptions.filter(p => p.status === 'Active').length;
+            document.getElementById('inventoryItems').textContent = inventory.length;
+            document.getElementById('lowStockItems').textContent = inventory.filter(item => item.stockLevel <= item.minStockLevel).length;
+        }
+
+        function loadActivityLog() {
+            const tbody = document.getElementById('activityLog');
+            tbody.innerHTML = '';
+            
+            activityLog.slice(-10).reverse().forEach(log => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td>${log.time}</td>
+                    <td>${log.system}</td>
+                    <td>${log.action}</td>
+                    <td>${log.user}</td>
+                    <td><span class="status-badge status-${log.status.toLowerCase()}">${log.status}</span></td>
+                `;
+            });
+        }
+
+        function checkSystemAlerts() {
+            const alertsDiv = document.getElementById('systemAlerts');
+            alertsDiv.innerHTML = '';
+
+            // Check for low stock items
+            const lowStockItems = inventory.filter(item => item.stockLevel <= item.minStockLevel);
+            if (lowStockItems.length > 0) {
+                alertsDiv.innerHTML += `
+                    <div class="alert alert-warning">
+                        <strong>Low Stock Alert:</strong> ${lowStockItems.length} items need restocking
+                    </div>
+                `;
+            }
+
+            // Check for expiring medications
+            const today = new Date();
+            const thirtyDaysFromNow = new Date(today.getTime() + (30 * 24 * 60 * 60 * 1000));
+            const expiringItems = inventory.filter(item => new Date(item.expiryDate) <= thirtyDaysFromNow);
+            if (expiringItems.length > 0) {
+                alertsDiv.innerHTML += `
+                    <div class="alert alert-warning">
+                        <strong>Expiry Alert:</strong> ${expiringItems.length} items expiring within 30 days
+                    </div>
+                `;
+            }
+        }
+
+        // EMR System Functions
+        function loadPatients() {
+            const tbody = document.getElementById('patientsTable');
+            tbody.innerHTML = '';
+            
+            patients.forEach(patient => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td>${patient.id}</td>
+                    <td>${patient.name}</td>
+                    <td>${patient.age}</td>
+                    <td>${patient.contact}</td>
+                    <td>${patient.lastVisit}</td>
+                    <td><span class="status-badge status-${patient.status.toLowerCase()}">${patient.status}</span></td>
+                    <td>
+                        <button class="btn" onclick="viewPatient('${patient.id}')">View</button>
+                        <button class="btn btn-secondary" onclick="editPatient('${patient.id}')">Edit</button>
+                    </td>
+                `;
+            });
+        }
+
+        function addPatient(event) {
+            event.preventDefault();
+            
+            const newPatient = {
+                id: 'P' + String(patients.length + 1).padStart(3, '0'),
+                name: document.getElementById('patientName').value,
+                age: parseInt(document.getElementById('patientAge').value),
+                contact: document.getElementById('patientContact').value,
+                email: document.getElementById('patientEmail').value,
+                medicalHistory: document.getElementById('medicalHistory').value,
+                allergies: document.getElementById('allergies').value,
+                lastVisit: new Date().toISOString().split('T')[0],
+                status: 'Active'
+            };
+
+            patients.push(newPatient);
+            loadPatients();
+            populatePatientDropdown();
+            updateDashboardStats();
+            closeModal('addPatientModal');
+            logActivity('EMR', 'New patient added', currentUser, 'Success');
+            showAlert('Patient added successfully!', 'success');
+            
+            // Reset form
+            document.querySelector('#addPatientModal form').reset();
+        }
+
+        function searchPatients() {
+            const searchTerm = document.getElementById('patientSearch').value.toLowerCase();
+            const tbody = document.getElementById('patientsTable');
+            tbody.innerHTML = '';
+            
+            const filteredPatients = patients.filter(patient => 
+                patient.name.toLowerCase().includes(searchTerm) ||
+                patient.id.toLowerCase().includes(searchTerm)
+            );
+            
+            filteredPatients.forEach(patient => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td>${patient.id}</td>
+                    <td>${patient.name}</td>
+                    <td>${patient.age}</td>
+                    <td>${patient.contact}</td>
+                    <td>${patient.lastVisit}</td>
+                    <td><span class="status-badge status-${patient.status.toLowerCase()}">${patient.status}</span></td>
+                    <td>
+                        <button class="btn" onclick="viewPatient('${patient.id}')">View</button>
+                        <button class="btn btn-secondary" onclick="editPatient('${patient.id}')">Edit</button>
+                    </td>
+                `;
+            });
+        }
+
+        // Prescription Database Functions
+        function loadPrescriptions() {
+            const tbody = document.getElementById('prescriptionsTable');
+            tbody.innerHTML = '';
+            
+            prescriptions.forEach(prescription => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td>${prescription.id}</td>
+                    <td>${prescription.patientName}</td>
+                    <td>${prescription.medication}</td>
+                    <td>${prescription.dosage}</td>
+                    <td>${prescription.prescribedDate}</td>
+                    <td><span class="status-badge status-${prescription.status.toLowerCase()}">${prescription.status}</span></td>
+                    <td>
+                        <button class="btn" onclick="viewPrescription('${prescription.id}')">View</button>
+                        <button class="btn btn-secondary" onclick="editPrescription('${prescription.id}')">Edit</button>
+                    </td>
+                `;
+            });
+        }
+
+        function addPrescription(event) {
+            event.preventDefault();
+            
+            const patientId = document.getElementById('prescriptionPatient').value;
+            const patient = patients.find(p => p.id === patientId);
+            
+            const newPrescription = {
+                id: 'RX' + String(prescriptions.length + 1).padStart(3, '0'),
+                patientId: patientId,
+                patientName: patient.name,
+                medication: document.getElementById('medication').value,
+                dosage: document.getElementById('dosage').value,
+                frequency: document.getElementById('frequency').value,
+                duration: parseInt(document.getElementById('duration').value),
+                prescribedDate: new Date().toISOString().split('T')[0],
+                instructions: document.getElementById('instructions').value,
+                status: 'Active'
+            };
+
+            prescriptions.push(newPrescription);
+            loadPrescriptions();
+            updateDashboardStats();
+            closeModal('addPrescriptionModal');
+            logActivity('Prescription', 'New prescription added', currentUser, 'Success');
+            showAlert('Prescription added successfully!', 'success');
+            
+            // Reset form
+            document.querySelector('#addPrescriptionModal form').reset();
+        }
+
+        function populatePatientDropdown() {
+            const select = document.getElementById('prescriptionPatient');
+            select.innerHTML = '<option value="">Select Patient</option>';
+            
+            patients.forEach(patient => {
+                const option = document.createElement('option');
+                option.value = patient.id;
+                option.textContent = `${patient.name} (${patient.id})`;
+                select.appendChild(option);
+            });
+        }
+
+        function searchPrescriptions() {
+            const searchTerm = document.getElementById('prescriptionSearch').value.toLowerCase();
+            const tbody = document.getElementById('prescriptionsTable');
+            tbody.innerHTML = '';
+            
+            const filteredPrescriptions = prescriptions.filter(prescription => 
+                prescription.patientName.toLowerCase().includes(searchTerm) ||
+                prescription.medication.toLowerCase().includes(searchTerm) ||
+                prescription.id.toLowerCase().includes(searchTerm)
+            );
+            
+            filteredPrescriptions.forEach(prescription => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td>${prescription.id}</td>
+                    <td>${prescription.patientName}</td>
+                    <td>${prescription.medication}</td>
+                    <td>${prescription.dosage}</td>
+                    <td>${prescription.prescribedDate}</td>
+                    <td><span class="status-badge status-${prescription.status.toLowerCase()}">${prescription.status}</span></td>
+                    <td>
+                        <button class="btn" onclick="viewPrescription('${prescription.id}')">View</button>
+                        <button class="btn btn-secondary" onclick="editPrescription('${prescription.id}')">Edit</button>
+                    </td>
+                `;
+            });
+        }
+
+        // Inventory Management Functions
+        function loadInventory() {
+            const tbody = document.getElementById('inventoryTable');
+            tbody.innerHTML = '';
+            
+            inventory.forEach(item => {
+                const statusClass = item.stockLevel <= item.minStockLevel ? 'warning' : 'active';
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td>${item.id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.supplier}</td>
+                    <td>${item.stockLevel}</td>
+                    <td>${item.unitPrice.toFixed(2)}</td>
+                    <td><span class="status-badge status-${statusClass}">${item.status}</span></td>
+                    <td>
+                        <button class="btn" onclick="viewInventoryItem('${item.id}')">View</button>
+                        <button class="btn btn-secondary" onclick="editInventoryItem('${item.id}')">Edit</button>
+                    </td>
+                `;
+            });
+        }
+
+        function addInventoryItem(event) {
+            event.preventDefault();
+            
+            const stockLevel = parseInt(document.getElementById('stockQuantity').value);
+            const minLevel = parseInt(document.getElementById('minStockLevel').value);
+            
+            const newItem = {
+                id: 'INV' + String(inventory.length + 1).padStart(3, '0'),
+                name: document.getElementById('itemName').value,
+                supplier: document.getElementById('supplier').value,
+                stockLevel: stockLevel,
+                unitPrice: parseFloat(document.getElementById('unitPrice').value),
+                minStockLevel: minLevel,
+                expiryDate: document.getElementById('expiryDate').value,
+                status: stockLevel <= minLevel ? 'Low Stock' : 'In Stock'
+            };
+
+            inventory.push(newItem);
+            loadInventory();
+            updateDashboardStats();
+            closeModal('addInventoryModal');
+            logActivity('Inventory', 'New item added', currentUser, 'Success');
+            showAlert('Inventory item added successfully!', 'success');
+            
+            // Reset form
+            document.querySelector('#addInventoryModal form').reset();
+        }
+
+        function searchInventory() {
+            const searchTerm = document.getElementById('inventorySearch').value.toLowerCase();
+            const tbody = document.getElementById('inventoryTable');
+            tbody.innerHTML = '';
+            
+            const filteredInventory = inventory.filter(item => 
+                item.name.toLowerCase().includes(searchTerm) ||
+                item.supplier.toLowerCase().includes(searchTerm) ||
+                item.id.toLowerCase().includes(searchTerm)
+            );
+            
+            filteredInventory.forEach(item => {
+                const statusClass = item.stockLevel <= item.minStockLevel ? 'warning' : 'active';
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td>${item.id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.supplier}</td>
+                    <td>${item.stockLevel}</td>
+                    <td>${item.unitPrice.toFixed(2)}</td>
+                    <td><span class="status-badge status-${statusClass}">${item.status}</span></td>
+                    <td>
+                        <button class="btn" onclick="viewInventoryItem('${item.id}')">View</button>
+                        <button class="btn btn-secondary" onclick="editInventoryItem('${item.id}')">Edit</button>
+                    </td>
+                `;
+            });
+        }
+
+        function generateFinancialReport() {
+            const totalValue = inventory.reduce((sum, item) => sum + (item.stockLevel * item.unitPrice), 0);
+            const lowStockValue = inventory.filter(item => item.stockLevel <= item.minStockLevel)
+                .reduce((sum, item) => sum + (item.stockLevel * item.unitPrice), 0);
+            
+            const report = `
+                Financial Report - ${new Date().toLocaleDateString()}
+                
+                Total Inventory Value: ${totalValue.toFixed(2)}
+                Low Stock Items Value: ${lowStockValue.toFixed(2)}
+                Total Items: ${inventory.length}
+                Low Stock Items: ${inventory.filter(item => item.stockLevel <= item.minStockLevel).length}
+                
+                Top 5 Most Valuable Items:
+                ${inventory.sort((a, b) => (b.stockLevel * b.unitPrice) - (a.stockLevel * a.unitPrice))
+                    .slice(0, 5)
+                    .map(item => `• ${item.name}: ${(item.stockLevel * item.unitPrice).toFixed(2)}`)
+                    .join('\n')}
+            `;
+            
+            alert(report);
+            logActivity('Inventory', 'Financial report generated', currentUser, 'Success');
+        }
+
+        function checkLowStock() {
+            const lowStockItems = inventory.filter(item => item.stockLevel <= item.minStockLevel);
+            
+            if (lowStockItems.length === 0) {
+                showAlert('All items are adequately stocked!', 'success');
+            } else {
+                const itemsList = lowStockItems.map(item => `${item.name} (${item.stockLevel} remaining)`).join('\n');
+                alert(`Low Stock Items:\n\n${itemsList}`);
+                logActivity('Inventory', 'Low stock check performed', currentUser, 'Warning');
+            }
+        }
+
+        // Utility Functions
+        function showModal(modalId) {
+            if (!currentUser) {
+                showAlert('Please login to access this feature', 'warning');
+                return;
+            }
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.innerHTML = message;
+            alertDiv.style.position = 'fixed';
+            alertDiv.style.top = '20px';
+            alertDiv.style.right = '20px';
+            alertDiv.style.zIndex = '9999';
+            alertDiv.style.minWidth = '300px';
+            
+            document.body.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 3000);
+        }
+
+        function logActivity(system, action, user, status) {
+            activityLog.push({
+                time: new Date().toLocaleTimeString(),
+                system: system,
+                action: action,
+                user: user || 'System',
+                status: status
+            });
+        }
+
+        // View/Edit Functions (Placeholder implementations)
+        function viewPatient(patientId) {
+            const patient = patients.find(p => p.id === patientId);
+            if (patient) {
+                alert(`Patient Details:\n\nID: ${patient.id}\nName: ${patient.name}\nAge: ${patient.age}\nContact: ${patient.contact}\nMedical History: ${patient.medicalHistory}\nAllergies: ${patient.allergies}`);
+                logActivity('EMR', `Viewed patient ${patient.name}`, currentUser, 'Success');
+            }
+        }
+
+        function editPatient(patientId) {
+            showAlert('Edit functionality would open detailed patient edit form', 'warning');
+            logActivity('EMR', `Attempted to edit patient ${patientId}`, currentUser, 'Success');
+        }
+
+        function viewPrescription(prescriptionId) {
+            const prescription = prescriptions.find(p => p.id === prescriptionId);
+            if (prescription) {
+                alert(`Prescription Details:\n\nID: ${prescription.id}\nPatient: ${prescription.patientName}\nMedication: ${prescription.medication}\nDosage: ${prescription.dosage}\nFrequency: ${prescription.frequency}\nInstructions: ${prescription.instructions}`);
+                logActivity('Prescription', `Viewed prescription ${prescription.id}`, currentUser, 'Success');
+            }
+        }
+
+        function editPrescription(prescriptionId) {
+            showAlert('Edit functionality would open detailed prescription edit form', 'warning');
+            logActivity('Prescription', `Attempted to edit prescription ${prescriptionId}`, currentUser, 'Success');
+        }
+
+        function viewInventoryItem(itemId) {
+            const item = inventory.find(i => i.id === itemId);
+            if (item) {
+                alert(`Inventory Details:\n\nID: ${item.id}\nName: ${item.name}\nSupplier: ${item.supplier}\nStock: ${item.stockLevel}\nPrice: ${item.unitPrice}\nMin Level: ${item.minStockLevel}\nExpiry: ${item.expiryDate}`);
+                logActivity('Inventory', `Viewed inventory item ${item.name}`, currentUser, 'Success');
+            }
+        }
+
+        function editInventoryItem(itemId) {
+            showAlert('Edit functionality would open detailed inventory edit form', 'warning');
+            logActivity('Inventory', `Attempted to edit inventory item ${itemId}`, currentUser, 'Success');
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSampleData();
+            updateNavigationAccess();
+            logActivity('System', 'Application initialized', 'System', 'Success');
+            showAlert('HealthFirst Pharmacy System loaded successfully!', 'success');
+        });
+
+        // Simulate MFA Authentication (based on risk assessment requirements)
+        function simulateMFA() {
+            return confirm('Multi-Factor Authentication: Click OK to simulate receiving and entering MFA code');
+        }
+
+        // Security monitoring simulation
+        setInterval(() => {
+            if (currentUser) {
+                logActivity('Security', 'Session activity check', currentUser, 'Success');
+            }
+        }, 300000); // Every 5 minutes
+
+        // Auto-logout after 30 minutes of inactivity (security measure from risk assessment)
+        let inactivityTimer;
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            if (currentUser) {
+                inactivityTimer = setTimeout(() => {
+                    showAlert('Session expired due to inactivity', 'warning');
+                    logout();
+                }, 1800000); // 30 minutes
+            }
+        }
+
+        // Reset timer on user activity
+        document.addEventListener('click', resetInactivityTimer);
+        document.addEventListener('keypress', resetInactivityTimer);
+    </script>
+</body>
+</html>
