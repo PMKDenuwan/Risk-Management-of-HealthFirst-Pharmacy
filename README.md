@@ -55,11 +55,11 @@ The demo simulates the operations of:
 
 ---
  
-###Role Based Access
+### Role Based Access
 ![Role](./Role_Based_Access.png)
 
-###System DashBoard
+### System DashBoard
 ![Dashboard](./System_Dashboard.png)
 
-###Pharmacist Dashboard
+### Pharmacist Dashboard
 ![Pharmacist](./Pharmacist.png)
