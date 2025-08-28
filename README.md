@@ -1,73 +1,58 @@
-HealthFirst Pharmacy – Risk Assessment & Demo Web Application
-📌 About the Organization
+# 🏥 HealthFirst Pharmacy – Risk Assessment & Demo Web Application  
 
-HealthFirst Pharmacy is a trusted provider of local healthcare, with the mission of caring for every person who walks through the door. Patients depend on HealthFirst daily for:
+## 📌 About the Organization  
+**HealthFirst Pharmacy** is a trusted provider of local healthcare, with the mission of caring for every person who walks through the door. Patients depend on HealthFirst daily for:  
+- ✅ Quality prescriptions  
+- ✅ Insightful and caring advice  
+- ✅ A warm sense of service  
 
-Quality prescriptions
+This personalized care is supported by a **comprehensive digital infrastructure** that ensures smooth operations while maintaining patient records securely.  
 
-Insightful and caring advice
+At the core of its operations are three critical systems:  
+1. **Electronic Medical Records (EMR) System** – Stores medical histories, prescriptions, and treatment plans for accurate and real-time patient care.  
+2. **Patient Prescription Database** – Manages medications, dosages, and refills while ensuring safe prescription handling and preventing drug interactions.  
+3. **Inventory Management System (IMS)** – Tracks medicine stocks, sends alerts for low supplies, and supports financial management by monitoring supplier transactions.  
 
-A warm sense of service
+Together, these systems ensure HealthFirst delivers **safe, efficient, and personalized care**.  
 
-This personalized care is supported by a comprehensive digital infrastructure that ensures smooth operations while maintaining patient records securely.
+---
 
-At the core of its operations are three critical systems:
+## 🛡️ Risk Assessment  
+This project involved conducting a **Risk Assessment** of HealthFirst Pharmacy’s digital infrastructure.  
 
-Electronic Medical Records (EMR) System – Stores medical histories, prescriptions, and treatment plans for accurate and real-time patient care.
+🔹 **My responsibility:** `Inventory Management System (IMS)`  
 
-Patient Prescription Database – Manages medications, dosages, and refills while ensuring safe prescription handling and preventing drug interactions.
+### Key Risks Identified in IMS  
+| Threat | Vulnerability | Impact | Mitigation |
+|--------|--------------|--------|------------|
+| Stock mismanagement (over/under-stocking) | Manual errors or outdated data | Shortages or excess wastage of medicines | Automated stock alerts & validation checks |
+| Data breaches | Weak access control | Leakage of supplier or stock data | Implement role-based access & encryption |
+| System downtime | Server/DB failure | Inability to dispense medicines | Regular backups & disaster recovery plan |
+| Unauthorized access | Poor authentication | Manipulation of stock data | Strong login policies & monitoring |
+| Integration failure with EMR/DB | Improper API/DB sync | Incorrect stock or prescription data | Regular integration testing & monitoring |
 
-Inventory Management System (IMS) – Tracks medicine stocks, sends alerts for low supplies, and supports financial management by monitoring supplier transactions.
+---
 
-Together, these systems ensure HealthFirst delivers safe, efficient, and personalized care.
+## 💻 Demo Web Application  
+To demonstrate these systems in practice, we built a **demo web application** using:  
+- 🌐 **HTML**  
+- 🎨 **CSS**  
+- ⚡ **JavaScript**  
 
-🛡️ Risk Assessment
+The demo simulates the operations of:  
+- **EMR System**  
+- **Patient Prescription Database**  
+- **Inventory Management System (IMS)** *(my module)*  
 
-As part of this project, we conducted a Risk Assessment of HealthFirst Pharmacy’s digital infrastructure, focusing on identifying threats, vulnerabilities, and potential impacts.
+---
 
-My responsibility was specifically on the Inventory Management System (IMS).
-The assessment covered:
+## 🚀 Features of IMS (My Module)  
+- ➕ Add, update, and remove medicines  
+- 📊 Real-time stock tracking  
+- 🔔 Low-stock alerts  
+- 📑 Supplier transaction monitoring  
+- 👨‍💻 Simple UI for pharmacy staff  
 
-Risks of stock mismanagement (overstocking/understocking)
+---
 
-Data integrity risks in supplier transactions
-
-Unauthorized access to IMS data
-
-System downtime risks impacting medicine availability
-
-Possible integration failures with EMR and Prescription Database
-
-👉 These findings help in building a safer and more reliable IMS for HealthFirst Pharmacy.
-
-💻 Demo Web Application
-
-To demonstrate how these systems work in practice, we developed a demo web application using:
-
-HTML
-
-CSS
-
-JavaScript
-
-The demo simulates the operations of:
-
-EMR System
-
-Patient Prescription Database
-
-Inventory Management System (My part)
-
-This allowed us to visualize how digital healthcare systems interact while highlighting potential risks and improvements.
-
-🚀 Features of Demo IMS
-
-Add, update, and remove medicines
-
-Real-time stock tracking
-
-Low-stock alert system
-
-Supplier transaction monitoring
-
-Simple UI for pharmacy staff
+## 📂 Repository Structure  
