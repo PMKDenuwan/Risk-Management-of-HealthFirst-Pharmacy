@@ -54,5 +54,6 @@ The demo simulates the operations of:
 - 👨‍💻 Simple UI for pharmacy staff  
 
 ---
+ 
+![Role](./Role_Based_Access.png)
 
-## 📂 Repository Structure  
